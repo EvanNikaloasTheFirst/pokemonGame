@@ -1,197 +1,117 @@
 import java.util.Scanner;
-
+import java.util.ArrayList;
 public class PokemonGame {
+
     public static void main(String[] args) throws InterruptedException {
+//        Will store all the badges earned via the user
+        ArrayList<String> badges = new ArrayList<>();
+//      Use of encapsulation via the Pokemon.java class
         Pokemon Pikachu = new Pokemon("Pikachu", "Electric", 35,
                 "Thunderbolt",
                 "Tackle",
-                "Growl");
+                "Growl", 9);
 
-        Pokemon Squirtle = new Pokemon("Squirtle", "Water", 45,
+        Pokemon Squirtle = new Pokemon("Squirtle", "Water", 4,
                 "Water Gun",
                 "Tail Whip",
-                "Tackle");
+                "Tackle", 9);
 
-        Pokemon Charmander = new Pokemon("Charmander", "Fire", 50,
+        Pokemon Charmander = new Pokemon("Charmander", "Fire", 5,
                 "Fire blast",
                 "Scratch",
-                "Ember");
+                "Ember", 13);
 
-        Pokemon Pidgin = new Pokemon("Pidgin", "Flying", 15,
+        Pokemon Pidgin = new Pokemon("Pidgin", "Flying", 12,
                 "Wing attack",
                 "Tackle",
-                "Sand attack");
+                "Sand attack", 5);
 
-        int HighHitPoints = (int) (Math.floor(Math.random() * 9) + 3);
-        Scanner userInput = new Scanner(System.in);
-        System.out.println("Pick your pokemon...");
+        //      Varies the amount of damage applied on the enemy
+
+        int EasyPoints = (int) (Math.random() * Pidgin.getLevel()+ 1);
+        int MediumPoints = (int) (Math.random() * Squirtle.getLevel() + 1);
+        int HardPoints = (int) (Math.random() * Charmander.getLevel()+ 1);
+
         System.out.println("You are using Pikachu... Good luck!");
-        start(Pikachu, Squirtle, Charmander, Pidgin, HighHitPoints);
+        start(Pikachu, Squirtle, Charmander, Pidgin, EasyPoints, MediumPoints, HardPoints, badges);
     }
 
-    private static void start(Pokemon Pikachu, Pokemon Squirtle, Pokemon Charmander, Pokemon Pidgin, int HighHitPoints) throws InterruptedException {
+    private static void start(Pokemon Pikachu, Pokemon Squirtle, Pokemon Charmander,
+                              Pokemon Pidgin, int EasyPoints, int MediumPoints,
+                              int HardPoints, ArrayList<String> badges) throws InterruptedException {
+
         System.out.println("Time for your first battle");
+        Thread.sleep(1500);
         System.out.println("Your opponent sends out Pidgin: Health points: " + Pidgin.getHealthPoints());
         Scanner userInput = new Scanner(System.in);
 
         int enemyHp = Pidgin.getHealthPoints();
         int userPokemonHp = Pikachu.getHealthPoints();
+        int UserAttackPoints;
+        int user;
 
-        do {
+        while (enemyHp > 0 && userPokemonHp > 0) {
             System.out.println("Select 1 to use " + Pikachu.getMoveOne());
             System.out.println("Select 2 to use " + Pikachu.getMoveTwo());
             System.out.println("Select 3 to use " + Pikachu.getMoveThree());
-            int user = userInput.nextInt();
+            user = userInput.nextInt();
+            UserAttackPoints = (int) (Math.random() * Pikachu.getLevel());
 
             switch (user) {
                 case 1 -> {
-                    System.out.println(Pikachu.getMoveOne() + " caused " + HighHitPoints + " damage");
+                    System.out.println(Pikachu.getName() + " used " + Pikachu.getMoveOne() + " and caused " + UserAttackPoints + " pts of damage");
                     System.out.println("Pidgin HP: ");
-                    System.out.println(enemyHp = enemyHp - HighHitPoints);
+                    System.out.println(enemyHp = enemyHp - UserAttackPoints);
                     Thread.sleep(3000);
-                    System.out.println(Pidgin.getMoveOne() + " caused " + HighHitPoints + " damage");
-                    System.out.println("Pikachu HP: ");
-                    System.out.println(userPokemonHp = userPokemonHp - HighHitPoints);
+                    System.out.println("---------------");
+                    if (enemyHp > 0) {
+                        System.out.println(Pidgin.getName() + " used " + Pidgin.getMoveOne() + " and caused " + EasyPoints + " pts of damage");
+                        System.out.println("Pikachu HP: ");
+                        System.out.println(userPokemonHp = userPokemonHp - EasyPoints);
+                        Thread.sleep(1500);
+                        System.out.println("---------------");
+                    }
                 }
                 case 2 -> {
-                    System.out.println(Pikachu.getMoveTwo() + " caused " + HighHitPoints + " damage");
+                    System.out.println(Pikachu.getName() + " used " + Pikachu.getMoveTwo() + " and caused " + UserAttackPoints + " pts of damage");
                     System.out.println("Pidgin HP: ");
-                    System.out.println(enemyHp = enemyHp - HighHitPoints);
+                    System.out.println(enemyHp = enemyHp - UserAttackPoints);
                     Thread.sleep(3000);
-                    System.out.println(Pidgin.getMoveTwo() + " caused " + HighHitPoints + " damage");
-                    System.out.println("Pikachu HP: ");
-                    System.out.println(userPokemonHp = userPokemonHp - HighHitPoints);
+                    System.out.println("---------------");
+                    if (enemyHp > 0) {
+                        System.out.println(Pidgin.getName() + " used " + Pidgin.getMoveTwo() + " and caused " + EasyPoints + " pts of damage");
+                        System.out.println("Pikachu HP: ");
+                        System.out.println(userPokemonHp = userPokemonHp - EasyPoints);
+                        Thread.sleep(1500);
+                        System.out.println("---------------");
+                    }
                 }
                 case 3 -> {
-                    System.out.println(Pikachu.getMoveThree() + " caused " + HighHitPoints + " damage");
-                    System.out.println("Pidgin HP: ");
-                    System.out.println(enemyHp = enemyHp - HighHitPoints);
+                    System.out.println(Pikachu.getName() + " used " + Pikachu.getMoveThree() + " and caused " + UserAttackPoints + " pts of damage");
+                    enemyHp = enemyHp - UserAttackPoints;
+                    System.out.println("Pidgin HP: " + enemyHp);
                     Thread.sleep(3000);
-                    System.out.println(Pidgin.getMoveThree() + " caused " + HighHitPoints + " damage");
-                    System.out.println("Pikachu HP: ");
-                    System.out.println(userPokemonHp = userPokemonHp - HighHitPoints);
+                    System.out.println("---------------");
+                    if (enemyHp > 0) {
+                        System.out.println(Pidgin.getName() + " used " + Pidgin.getMoveThree() + " and caused " + EasyPoints + " pts of damage");
+                        userPokemonHp = userPokemonHp - EasyPoints;
+                        System.out.println("Pikachu HP: " + userPokemonHp);
+                        Thread.sleep(1500);
+                        System.out.println("---------------");
+                    }
                 }
             }
-        } while (enemyHp > 0);
-         if (enemyHp < 0) {
-             System.out.println("You beat trainer one");
-             System.out.println("Congratulations");
         }
-         else if (userPokemonHp <= 0){
-                System.out.println("Your pokemon fainted");
-                System.out.println("Game Over");
-//                        System.exit(0);
-            }
-         secondBattle(Pikachu,Squirtle,Charmander,HighHitPoints);
-        }
-    private static void secondBattle(Pokemon Pikachu, Pokemon Squirtle, Pokemon Charmander, int HighHitPoints) throws InterruptedException {
-        System.out.println("Time for your first battle");
-        System.out.println("Your opponent sends out Squirtle: Health points: " + Squirtle.getHealthPoints());
-        Scanner userInput = new Scanner(System.in);
 
-        int enemyHp = Squirtle.getHealthPoints();
-        int userPokemonHp = Pikachu.getHealthPoints();
-
-        do {
-            System.out.println("Select 1 to use " + Pikachu.getMoveOne());
-            System.out.println("Select 2 to use " + Pikachu.getMoveTwo());
-            System.out.println("Select 3 to use " + Pikachu.getMoveThree());
-            int user = userInput.nextInt();
-
-            switch (user) {
-                case 1 -> {
-                    System.out.println(Pikachu.getMoveOne() + " caused " + HighHitPoints + " damage");
-                    System.out.println("Squirtle HP: ");
-                    System.out.println(enemyHp = enemyHp - HighHitPoints);
-                    Thread.sleep(3000);
-                    System.out.println(Squirtle.getMoveOne() + " caused " + HighHitPoints + " damage");
-                    System.out.println("Pikachu HP: ");
-                    System.out.println(userPokemonHp = userPokemonHp - HighHitPoints);
-                }
-                case 2 -> {
-                    System.out.println(Pikachu.getMoveTwo() + " caused " + HighHitPoints + " damage");
-                    System.out.println("Squirtle HP: ");
-                    System.out.println(enemyHp = enemyHp - HighHitPoints);
-                    Thread.sleep(3000);
-                    System.out.println(Squirtle.getMoveTwo() + " caused " + HighHitPoints + " damage");
-                    System.out.println("Squirtle HP: ");
-                    System.out.println(userPokemonHp = userPokemonHp - HighHitPoints);
-                }
-                case 3 -> {
-                    System.out.println(Pikachu.getMoveThree() + " caused " + HighHitPoints + " damage");
-                    System.out.println("Squirtle HP: ");
-                    System.out.println(enemyHp = enemyHp - HighHitPoints);
-                    Thread.sleep(3000);
-                    System.out.println(Squirtle.getMoveThree() + " caused " + HighHitPoints + " damage");
-                    System.out.println("Pikachu HP: ");
-                    System.out.println(userPokemonHp = userPokemonHp - HighHitPoints);
-                }
-            }
-        } while (enemyHp > 0);
-        if (enemyHp < 0) {
-            System.out.println("You beat trainer two");
-            System.out.println("Congratulations");
-        }
-        else if (userPokemonHp <= 0){
+        if (enemyHp <= 0) {
+            System.out.println("You beat trainer one");
+            badges.add("Flying badge");
+            System.out.println("Congratulations, you earned the " + badges.get(0));
+        } else {
             System.out.println("Your pokemon fainted");
             System.out.println("Game Over");
-        }
-
-        finalBattle( Pikachu,Charmander, HighHitPoints);
-    }
-    private static void finalBattle(Pokemon Pikachu,Pokemon Charmander, int HighHitPoints) throws InterruptedException {
-
-        System.out.println("Time for your first battle");
-        System.out.println("Your opponent sends out Charmander: Health points: " + Charmander.getHealthPoints());
-        Scanner userInput = new Scanner(System.in);
-
-        int enemyHp = Charmander.getHealthPoints();
-        int userPokemonHp = Pikachu.getHealthPoints();
-
-        do {
-            System.out.println("Select 1 to use " + Pikachu.getMoveOne());
-            System.out.println("Select 2 to use " + Pikachu.getMoveTwo());
-            System.out.println("Select 3 to use " + Pikachu.getMoveThree());
-            int user = userInput.nextInt();
-
-            switch (user) {
-                case 1 -> {
-                    System.out.println(Pikachu.getMoveOne() + " caused " + HighHitPoints + " damage");
-                    System.out.println("Charmander HP: ");
-                    System.out.println(enemyHp = enemyHp - HighHitPoints);
-
-                    Thread.sleep(3000);
-                    System.out.println(Charmander.getMoveOne() + " caused " + HighHitPoints + " damage");
-                    System.out.println("Pikachu HP: ");
-                    System.out.println(userPokemonHp = userPokemonHp - HighHitPoints);
-                }
-                case 2 -> {
-                    System.out.println(Pikachu.getMoveTwo() + " caused " + HighHitPoints + " damage");
-                    System.out.println("Charmander HP: ");
-                    System.out.println(enemyHp = enemyHp - HighHitPoints);
-                    Thread.sleep(3000);
-                    System.out.println(Charmander.getMoveTwo() + " caused " + HighHitPoints + " damage");
-                    System.out.println("Pikachu HP: ");
-                    System.out.println(userPokemonHp = userPokemonHp - HighHitPoints);
-                }
-                case 3 -> {
-                    System.out.println(Pikachu.getMoveThree() + " caused " + HighHitPoints + " damage");
-                    System.out.println("Charmander HP: ");
-                    System.out.println(enemyHp = enemyHp - HighHitPoints);
-                    Thread.sleep(3000);
-                    System.out.println(Charmander.getMoveThree() + " caused " + HighHitPoints + " damage");
-                    System.out.println("Pikachu HP: ");
-                    System.out.println(userPokemonHp = userPokemonHp - HighHitPoints);
-                }
+            System.out.println("Your badges earned: ");
+            for (String badge : badges) {
+                System.out.println(badge);
             }
-        } while (enemyHp > 0);
-        if (enemyHp < 0) {
-            System.out.println("You beat trainer two");
-            System.out.println("Congratulations");
-        }
-        else if (userPokemonHp <= 0){
-            System.out.println("Your pokemon fainted");
-            System.out.println("Game Over");
-        }
-    }
-    }
+        }}}

@@ -9,6 +9,7 @@ public class Pokemon {
 
     private String moveThree;
 
+    private int level;
 
     public Pokemon() {
         name = "null";
@@ -17,16 +18,18 @@ public class Pokemon {
         moveOne = "null";
         moveTwo = "null";
         moveThree = "null";
+        level = 0;
 
     }
 
-    public Pokemon(String Name,String Type,int HealthPoints,String MoveOne, String MoveTwo, String MoveThree){
+    public Pokemon(String Name,String Type,int HealthPoints,String MoveOne, String MoveTwo, String MoveThree, int Level){
         name = Name;
         type = Type;
         healthPoints = HealthPoints;
         moveOne = MoveOne;
         moveTwo = MoveTwo;
         moveThree = MoveThree;
+        level = Level;
 
     }
 //    Getters
@@ -54,6 +57,10 @@ public class Pokemon {
     {
         return moveThree;
     }
+    public int getLevel()
+    {
+        return level;
+    }
 
     //    SETTERS
     public void setName(String name){
@@ -77,5 +84,7 @@ public class Pokemon {
         this.moveTwo = MoveThree;
     }
 
-
+    public void setLevel(int level) {
+        this.level = level;
     }
+}
