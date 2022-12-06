@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class PokemonGame {
 
     public static void main(String[] args) throws InterruptedException {
-//        Will store all the badges earned via the user
         ArrayList<String> badges = new ArrayList<>();
 //      Use of encapsulation via the Pokemon.java class
         Pokemon Pikachu = new Pokemon("Pikachu", "Electric", 35,

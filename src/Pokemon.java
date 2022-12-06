@@ -32,7 +32,7 @@ public class Pokemon {
         level = Level;
 
     }
-//    Getters
+
     public String getName()
     {
         return name;
