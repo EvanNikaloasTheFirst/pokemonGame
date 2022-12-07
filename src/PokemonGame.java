@@ -5,7 +5,7 @@ public class PokemonGame {
     public static void main(String[] args) throws InterruptedException {
         ArrayList<String> badges = new ArrayList<>();
 //      Use of encapsulation via the Pokemon.java class
-        Pokemon Pikachu = new Pokemon("Pikachu", "Electric", 35,
+        Pokemon Pikachu = new Pokemon("Pikachu", "Electric", 30,
                 "Thunderbolt",
                 "Tackle",
                 "Growl", 9);
@@ -25,92 +25,126 @@ public class PokemonGame {
                 "Tackle",
                 "Sand attack", 5);
 
-        //      Varies the amount of damage applied on the enemy
+        Pokemon Piplup = new Pokemon("Piplup", "Water", 12,
+                "Splash",
+                "Water disc",
+                "Tackle", 5);
 
-        int EasyPoints = (int) (Math.random() * Pidgin.getLevel()+ 1);
-        int MediumPoints = (int) (Math.random() * Squirtle.getLevel() + 1);
-        int HardPoints = (int) (Math.random() * Charmander.getLevel()+ 1);
+        Pokemon Garchomp = new Pokemon("Garchomp", "Fighting", 12,
+                "Slam punch",
+                "Rock throw",
+                "Tackle", 5);
 
         System.out.println("You are using Pikachu... Good luck!");
-        start(Pikachu, Squirtle, Charmander, Pidgin, EasyPoints, MediumPoints, HardPoints, badges);
+
+        start(Pikachu, Squirtle, Charmander,Pidgin,Piplup,Garchomp);
     }
 
-    private static void start(Pokemon Pikachu, Pokemon Squirtle, Pokemon Charmander,
-                              Pokemon Pidgin, int EasyPoints, int MediumPoints,
-                              int HardPoints, ArrayList<String> badges) throws InterruptedException {
 
-        System.out.println("Time for your first battle");
-        Thread.sleep(1500);
-        System.out.println("Your opponent sends out Pidgin: Health points: " + Pidgin.getHealthPoints());
+    private static void start(Pokemon Pikachu, Pokemon Squirtle, Pokemon Charmander,
+                              Pokemon Pidgin,Pokemon Garchomp,Pokemon Piplup) throws InterruptedException {
+
+        Pokemon[] pokemons = {Pikachu,Squirtle,Charmander};
+        Pokemon[] enemies = {Garchomp,Piplup,Pidgin};
+        int choice;
+        Scanner userInput = new Scanner(System.in);
+        System.out.println("Select your pokemon:");
+        for(int i = 0; i < pokemons.length; i++)
+        {
+            System.out.println("Enter " + i +" for " + pokemons[i].getName());
+        }
+        choice = userInput.nextInt();
+
+
+        Pokemon userChoice = pokemons[choice];
+
+        for (int i = 0; i < enemies.length; i++)
+        {
+            challenges(userChoice,enemies[i]);
+        }
+    }
+
+    public static void rollAttack(Pokemon attackingPokemon, Pokemon defendingPokemon) throws InterruptedException {
+        int attackDamage = (int) (Math.random() * attackingPokemon.getLevel());
+        if (attackingPokemon.getHealthPoints() > 0) {
+            System.out.println(attackingPokemon.getName() + " used " + attackingPokemon.getMoveOne() + " and caused " + attackDamage + " pts of damage");
+            defendingPokemon.setHealthPoints(defendingPokemon.getHealthPoints() - attackDamage);
+            System.out.println(defendingPokemon.getName() + " HP: " + defendingPokemon.getHealthPoints());
+            Thread.sleep(3000);
+            System.out.println("-------------------");
+        }
+
+    }
+
+    public static void rollAttack2(Pokemon attackingPokemon, Pokemon defendingPokemon) throws InterruptedException {
+        int attackDamage = (int) (Math.random() * attackingPokemon.getLevel());
+        if (attackingPokemon.getHealthPoints() > 0) {
+            System.out.println(attackingPokemon.getName() + " used " + attackingPokemon.getMoveTwo() + " and caused " + attackDamage + "pts of damage");
+            defendingPokemon.setHealthPoints(defendingPokemon.getHealthPoints() - attackDamage);
+            System.out.println(defendingPokemon.getName() + " HP: " + defendingPokemon.getHealthPoints());
+            Thread.sleep(3000);
+            System.out.println("-------------------");
+        }
+
+    }
+
+    public static void rollAttack3(Pokemon attackingPokemon, Pokemon defendingPokemon) throws InterruptedException {
+        int attackDamage = (int) (Math.random() * attackingPokemon.getLevel());
+        if (attackingPokemon.getHealthPoints() > 0) {
+            System.out.println(attackingPokemon.getName() + " used " + attackingPokemon.getMoveThree() + " and caused " + attackDamage + "pts of damage");
+            defendingPokemon.setHealthPoints(defendingPokemon.getHealthPoints() - attackDamage);
+            System.out.println(defendingPokemon.getName() + " HP: " + defendingPokemon.getHealthPoints());
+            Thread.sleep(3000);
+            System.out.println("-------------------");
+        }
+
+    }
+
+    public static void challenges(Pokemon attackingPokemon, Pokemon defendingPokemon) throws InterruptedException {
+        int user;
         Scanner userInput = new Scanner(System.in);
 
-        int enemyHp = Pidgin.getHealthPoints();
-        int userPokemonHp = Pikachu.getHealthPoints();
-        int UserAttackPoints;
-        int user;
 
-        while (enemyHp > 0 && userPokemonHp > 0) {
-            System.out.println("Select 1 to use " + Pikachu.getMoveOne());
-            System.out.println("Select 2 to use " + Pikachu.getMoveTwo());
-            System.out.println("Select 3 to use " + Pikachu.getMoveThree());
+        while (attackingPokemon.getHealthPoints() > 0 && defendingPokemon.getHealthPoints() > 0) {
+            System.out.println("Enter 1 to use: " + attackingPokemon.getMoveOne());
+            System.out.println("Enter 2 to use: " + attackingPokemon.getMoveTwo());
+            System.out.println("Enter 3 to use: " + attackingPokemon.getMoveThree());
             user = userInput.nextInt();
-            UserAttackPoints = (int) (Math.random() * Pikachu.getLevel());
-
             switch (user) {
                 case 1 -> {
-                    System.out.println(Pikachu.getName() + " used " + Pikachu.getMoveOne() + " and caused " + UserAttackPoints + " pts of damage");
-                    System.out.println("Pidgin HP: ");
-                    System.out.println(enemyHp = enemyHp - UserAttackPoints);
-                    Thread.sleep(3000);
-                    System.out.println("---------------");
-                    if (enemyHp > 0) {
-                        System.out.println(Pidgin.getName() + " used " + Pidgin.getMoveOne() + " and caused " + EasyPoints + " pts of damage");
-                        System.out.println("Pikachu HP: ");
-                        System.out.println(userPokemonHp = userPokemonHp - EasyPoints);
-                        Thread.sleep(1500);
-                        System.out.println("---------------");
+                    if (attackingPokemon.getHealthPoints() > 0 && defendingPokemon.getHealthPoints() > 0) {
+                        rollAttack(attackingPokemon, defendingPokemon);
+                        rollAttack(defendingPokemon, attackingPokemon);
                     }
                 }
                 case 2 -> {
-                    System.out.println(Pikachu.getName() + " used " + Pikachu.getMoveTwo() + " and caused " + UserAttackPoints + " pts of damage");
-                    System.out.println("Pidgin HP: ");
-                    System.out.println(enemyHp = enemyHp - UserAttackPoints);
-                    Thread.sleep(3000);
-                    System.out.println("---------------");
-                    if (enemyHp > 0) {
-                        System.out.println(Pidgin.getName() + " used " + Pidgin.getMoveTwo() + " and caused " + EasyPoints + " pts of damage");
-                        System.out.println("Pikachu HP: ");
-                        System.out.println(userPokemonHp = userPokemonHp - EasyPoints);
-                        Thread.sleep(1500);
-                        System.out.println("---------------");
+                    if (attackingPokemon.getHealthPoints() > 0 && defendingPokemon.getHealthPoints() > 0) {
+                        rollAttack2(attackingPokemon, defendingPokemon);
+                        rollAttack2(defendingPokemon, attackingPokemon);
                     }
                 }
+
                 case 3 -> {
-                    System.out.println(Pikachu.getName() + " used " + Pikachu.getMoveThree() + " and caused " + UserAttackPoints + " pts of damage");
-                    enemyHp = enemyHp - UserAttackPoints;
-                    System.out.println("Pidgin HP: " + enemyHp);
-                    Thread.sleep(3000);
-                    System.out.println("---------------");
-                    if (enemyHp > 0) {
-                        System.out.println(Pidgin.getName() + " used " + Pidgin.getMoveThree() + " and caused " + EasyPoints + " pts of damage");
-                        userPokemonHp = userPokemonHp - EasyPoints;
-                        System.out.println("Pikachu HP: " + userPokemonHp);
-                        Thread.sleep(1500);
-                        System.out.println("---------------");
+                    if (attackingPokemon.getHealthPoints() > 0 && defendingPokemon.getHealthPoints() > 0) {
+                        rollAttack3(attackingPokemon, defendingPokemon);
+                        rollAttack3(defendingPokemon, attackingPokemon);
                     }
                 }
             }
-        }
+//
 
-        if (enemyHp <= 0) {
-            System.out.println("You beat trainer one");
-            badges.add("Flying badge");
-            System.out.println("Congratulations, you earned the " + badges.get(0));
+        }
+        if (defendingPokemon.getHealthPoints() <= 0) {
+            System.out.println("You defated " + defendingPokemon.getName());
+
+//            System.out.println("Congratulations, you earned the " + badges.get(0));
         } else {
             System.out.println("Your pokemon fainted");
             System.out.println("Game Over");
-            System.out.println("Your badges earned: ");
-            for (String badge : badges) {
-                System.out.println(badge);
+            System.exit(0);
+//            System.out.println("Your badges earned: ");
+//            for (String badge : badges) {
+//                System.out.println(badge);
             }
-        }}}
+    }
+        }
