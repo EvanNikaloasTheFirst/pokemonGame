@@ -88,7 +88,7 @@ public class PokemonGame {
         if (attackingPokemon.getHealthPoints() > 0) {
                 System.out.println(attackingPokemon.getName() + " used " + attackingPokemon.getMoveThree() + " and caused " + attackDamage + "pts of damage");
                 defendingPokemon.setHealthPoints(defendingPokemon.getHealthPoints() - attackDamage);
-                System.out.println(defendingPokemon.getName() + " HP: " + defendingPokemon.getHealthPoints());
+                System.out.println(defendingPokemon.getName() + " HP : " + defendingPokemon.getHealthPoints());
                 Thread.sleep(3000);
                 System.out.println("-------------------");
             }
@@ -136,7 +136,7 @@ public class PokemonGame {
             System.out.println("Your badges earned: ");
             for (Object badge : badges) System.out.println(badge);
         } else {
-            System.out.println("Your pokemon fainted.");
+            System.out.println("Your pokemon fainted");
             System.out.println("Game Over");
             System.exit(0);
             System.out.println("Your badges earned: ");
