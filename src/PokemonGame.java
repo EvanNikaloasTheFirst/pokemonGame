@@ -35,7 +35,7 @@ public class PokemonGame {
                 "Rock throw",
                 "Tackle", 5);
 
-// Starts game
+
         start(Pikachu, Squirtle, Charmander, Pidgin, Piplup, Garchomp, badges);
     }
     private static void start(Pokemon Pikachu, Pokemon Squirtle, Pokemon Charmander,
