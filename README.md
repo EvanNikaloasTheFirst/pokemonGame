@@ -103,8 +103,9 @@ private static void start()
    2. Upon every round the user will be displayed with 3 attacking moves.
    Input a number from 1 - 3 to perfrom the desired move.
    3. As long as your Pokemon or the enemy pokemon's HP is above 0, the battle will continue;
-   ----------
-   What did I learn
+   ---------------
+   What did I learn ? 📩
+   ------------------
    I refreshed my memory using java to perfrom repetive tasks in a much more dynamic aspect.
    Using setters and getters it was much easier to create Pokemons and set the relevant attributes to them.
    
