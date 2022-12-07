@@ -107,6 +107,7 @@ private static void start()
    What did I learn ? 📩
    ------------------
    I refreshed my memory using java to perfrom repetive tasks in a much more dynamic aspect.
-   Using setters and getters it was much easier to create Pokemons and set the relevant attributes to them.
+   Using setters and getters it was much easier to create Pokemons and set the relevant attributes to them. 
+   Also referencing the attributes of the Pokemons was much easier to retrieve using the .get() function.
    
    
