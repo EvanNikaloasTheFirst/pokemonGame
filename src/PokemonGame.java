@@ -60,8 +60,7 @@ public class PokemonGame {
     public static void rollAttack(Pokemon attackingPokemon, Pokemon defendingPokemon) throws InterruptedException {
         int attackDamage = (int) (Math.random() * attackingPokemon.getLevel());
         if (attackingPokemon.getHealthPoints() > 0) {
-            if (attackingPokemon.getType() == defendingPokemon.getType()) {
-                attackDamage = (int) (attackDamage / 2 + 0.5);
+
                 System.out.println(attackingPokemon.getName() + " used " + attackingPokemon.getMoveOne() + " and caused " + attackDamage + " pts of damage");
                 defendingPokemon.setHealthPoints(defendingPokemon.getHealthPoints() - attackDamage);
                 System.out.println(defendingPokemon.getName() + " HP: " + defendingPokemon.getHealthPoints());
@@ -70,13 +69,11 @@ public class PokemonGame {
             }
         }
 
-    }
+
 
     public static void rollAttack2(Pokemon attackingPokemon, Pokemon defendingPokemon) throws InterruptedException {
         int attackDamage = (int) (Math.random() * attackingPokemon.getLevel());
         if (attackingPokemon.getHealthPoints() > 0) {
-            if (attackingPokemon.getType() == defendingPokemon.getType()) {
-                attackDamage = (int) (attackDamage / 2 + 0.5);
                 System.out.println(attackingPokemon.getName() + " used " + attackingPokemon.getMoveTwo() + " and caused " + attackDamage + "pts of damage");
                 defendingPokemon.setHealthPoints(defendingPokemon.getHealthPoints() - attackDamage);
                 System.out.println(defendingPokemon.getName() + " HP: " + defendingPokemon.getHealthPoints());
@@ -84,13 +81,11 @@ public class PokemonGame {
                 System.out.println("-------------------");
             }
         }
-    }
+
 
     public static void rollAttack3(Pokemon attackingPokemon, Pokemon defendingPokemon) throws InterruptedException {
         int attackDamage = (int) (Math.random() * attackingPokemon.getLevel());
         if (attackingPokemon.getHealthPoints() > 0) {
-            if(attackingPokemon.getType() == defendingPokemon.getType()) {
-                attackDamage = (int) (attackDamage / 2 + 0.5);
                 System.out.println(attackingPokemon.getName() + " used " + attackingPokemon.getMoveThree() + " and caused " + attackDamage + "pts of damage");
                 defendingPokemon.setHealthPoints(defendingPokemon.getHealthPoints() - attackDamage);
                 System.out.println(defendingPokemon.getName() + " HP: " + defendingPokemon.getHealthPoints());
@@ -99,7 +94,6 @@ public class PokemonGame {
             }
         }
 
-    }
 
     public static void challenges(Pokemon attackingPokemon, Pokemon defendingPokemon, ArrayList badges) throws InterruptedException {
         int user;
